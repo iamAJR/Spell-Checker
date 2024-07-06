@@ -8,7 +8,7 @@ The Spell Checker Applicationis a comprehensive tool designed to help users chec
 - Text-to-speech functionality
 -  A user-friendly and visually appealing interface built with tkinter
 
-## Reqiurements
+## Requirements
 
 <p style="font-size:18px;">Ensure you have the following prerequisites installed:</p>
 
