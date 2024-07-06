@@ -19,7 +19,7 @@ The Spell Checker Applicationis a comprehensive tool designed to help users chec
 - <p style="font-size:16px;">gTTS library (Google Text-to-Speech)</p>
 - <p style="font-size:16px;">playsound(version 1.2.2 for python 3.10)</p>
 
-## Screenshots
+## Interface
 ![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/7ceed124-72f8-460c-a3c8-22f4794d7b9b)
 
 
@@ -34,11 +34,11 @@ The Spell Checker Applicationis a comprehensive tool designed to help users chec
 To get started with the project
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/spell-checker.git
+    git clone https://github.com/iamAJR/Spell_Checker.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd spell-checker
+    cd Spell_Checker
     ```
 3. Install the required packages:
     ```sh
