@@ -41,9 +41,10 @@ def fetch_synonyms(word):
     return ["No synonyms found"]
 
 
-def checker(word, dict_list):
+# using the difflib module comaparison based on tjhe ratio given i am insetead using the edit distance method 
+'''def checker(word, dict_list):
     suggestions = difflib.get_close_matches(word, dict_list, n=8, cutoff=0.6)
-    return [(suggestion, 0) for suggestion in suggestions]
+    return [(suggestion, 0) for suggestion in suggestions]'''
 
 
 def check_spelling(event=None):
