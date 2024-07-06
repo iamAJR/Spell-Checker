@@ -1,9 +1,10 @@
 import requests
 from tkinter import *
 from tkinter import messagebox
+import difflib
 from text_speech import say
 import threading
-from editdistance import  check
+from editdistance import check
 
 def load_dictionary(file_path):
     with open(file_path, 'r') as file:
@@ -16,7 +17,7 @@ def save_to_dictionary(file_path, word):
 
 
 def fetch_definition(word):
-    api_key = '*****************************'
+    api_key = 'bb06a07b-96c5-4e3d-b4c4-1f15343b190c'
     url = f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
@@ -27,7 +28,7 @@ def fetch_definition(word):
 
 
 def fetch_synonyms(word):
-    api_key = '******************************'
+    api_key = 'cdabdf20-a184-4746-afd8-6186e69b63d0'
     url = f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
@@ -39,8 +40,7 @@ def fetch_synonyms(word):
             return synonyms
     return ["No synonyms found"]
 
-
-# using the difflib module comaparison based on tjhe ratio given i am insetead using the edit distance method 
+# using the difflib module comaparison based on tjhe ratio given
 '''def checker(word, dict_list):
     suggestions = difflib.get_close_matches(word, dict_list, n=8, cutoff=0.6)
     return [(suggestion, 0) for suggestion in suggestions]'''
@@ -48,7 +48,7 @@ def fetch_synonyms(word):
 
 def check_spelling(event=None):
     word = input_text.get()
-    suggestions = checker(word, dictionary)
+    suggestions = check(word, dictionary)
     suggestion_list = [suggestion[0] for suggestion in suggestions]
     listbox.delete(0, END)
     for suggestion in suggestion_list:
@@ -169,7 +169,7 @@ dictionary = load_dictionary(dictionary_path)
 header_frame = Frame(root, bg="#333333", bd=5)
 header_frame.pack(fill="x")
 
-heading = Label(header_frame, text="Spell Checker", font=("Helvetica", 30, "bold"), bg="#333333", fg="#FFD700")
+heading = Label(header_frame, text="Spell Checker", font=("Helvetica", 30, "bold"), bg="#333333", fg="white")
 heading.pack()
 
 
@@ -190,7 +190,7 @@ input_text.focus()
 button_frame = Frame(input_frame, bg="#1A1A1A")
 button_frame.grid(row=0, column=2, padx=10)
 
-button_check = Button(button_frame, text="Check", width=10, font=("arial", 20, "bold"), fg="#FFFFFF", bg="#FF4500",
+button_check = Button(button_frame, text="Check", width=10, font=("arial", 20, "bold"), bg="#333333", fg="#FFD700",
                       command=check_spelling)
 button_check.pack(pady=5)
 
@@ -226,7 +226,7 @@ suggestions_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 mlti_listbox = Listbox(suggestions_frame, font=("Poppins", 20), width=30, height=10, bg="#FFFFFF", fg="#000000", border=2)
 mlti_listbox.grid(row=1, column=0, padx=25, pady=35)
 
-word_count = Label(multi_line_text, text="Word count: 0", font=("Helvetica", 18, "bold"), bg="lightgreen", fg="black",border=11)
+word_count = Label(multi_line_text, text="Word count: 0", font=("Helvetica", 18, "bold"), bg="#1A1A1A", fg="white",border=11)
 word_count.grid(row=2, column=1, padx=10, pady=10, sticky='ne')
 
 # Buttons
@@ -249,7 +249,7 @@ root.bind("<KeyPress-m>", multi_line_text_view)
 # Bind the "a" key to the handle_key_a function
 input_text.bind("<KeyPress-a>", add_to_dictionary)
 entry_text.bind("<Double-1>", show_suggestions_mlti)
-root.bind("<KeyPress-b>", show_initial)
+root.bind("<KeyPress-0>", show_initial)
 entry_text.bind("<Return>",multi_check_spelling)
 input_text.bind("<Return>",check_spelling)
 entry_text.bind("<Delete>", clear_text)
@@ -266,8 +266,7 @@ listbox.grid(row=0, column=1, padx=10)
 
 listbox.bind("<<ListboxSelect>>", show_definition_and_synonyms)
 
-button_add = Button(button_frame, text="Add to Dictionary", width=15, font=("arial", 15, "bold"), fg="#FFFFFF",
-                    bg="#32CD32", command=add_to_dictionary)
+button_add = Button(button_frame, text="Add to Dictionary", width=15, font=("arial", 15, "bold"), bg="#333333", fg="#FFD700", command=add_to_dictionary)
 button_add.pack(pady=5)
 
 definition_frame = Frame(root, bg="#1A1A1A")
