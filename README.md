@@ -20,7 +20,7 @@ Welcome to The Spell Checker Application! This is a comprehensive tool designed 
 - <p style="font-size:16px;">Python 3.10 or higher</p>
 - <p style="font-size:16px;">requests library</p>
 - <p style="font-size:16px;">gTTS library (Google Text-to-Speech)</p>
-- <p style="font-size:16px;">playsound</p>
+- <p style="font-size:16px;">playsound(version 1.2.2 for python 3.10)</p>
 - <p style="font-size:16px;">dictionary (.txt file)</p>
 
 ## Screenshots
