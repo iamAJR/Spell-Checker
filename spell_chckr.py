@@ -1,10 +1,9 @@
 import requests
 from tkinter import *
 from tkinter import messagebox
-import difflib
 from text_speech import say
 import threading
-from MUTLIcheck import  check
+from editdistance import  check
 
 def load_dictionary(file_path):
     with open(file_path, 'r') as file:
@@ -250,7 +249,7 @@ root.bind("<KeyPress-m>", multi_line_text_view)
 # Bind the "a" key to the handle_key_a function
 input_text.bind("<KeyPress-a>", add_to_dictionary)
 entry_text.bind("<Double-1>", show_suggestions_mlti)
-root.bind("<BackSpace>", show_initial)
+root.bind("<KeyPress-b>", show_initial)
 entry_text.bind("<Return>",multi_check_spelling)
 input_text.bind("<Return>",check_spelling)
 entry_text.bind("<Delete>", clear_text)
