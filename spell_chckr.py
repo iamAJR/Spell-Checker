@@ -17,7 +17,7 @@ def save_to_dictionary(file_path, word):
 
 
 def fetch_definition(word):
-    api_key = 'bb06a07b-96c5-4e3d-b4c4-1f15343b190c'
+    api_key = '*****************************'
     url = f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
@@ -28,7 +28,7 @@ def fetch_definition(word):
 
 
 def fetch_synonyms(word):
-    api_key = 'cdabdf20-a184-4746-afd8-6186e69b63d0'
+    api_key = '******************************'
     url = f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
