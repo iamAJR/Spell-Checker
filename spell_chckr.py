@@ -1,7 +1,6 @@
 import requests
 from tkinter import *
 from tkinter import messagebox
-import difflib
 from text_speech import say
 import threading
 from editdistance import check
@@ -79,6 +78,8 @@ def show_definition_and_synonyms(event):
 
         output_frame.pack_forget()
         definition_frame.pack(pady=10)
+        multi_line.config(state=DISABLED)
+
 
 
 def add_to_dictionary(event=None):
@@ -92,19 +93,24 @@ def add_to_dictionary(event=None):
 
 
 def show_suggestions():
+    multi_line.config(state=NORMAL)
+
     definition_frame.pack_forget()
     output_frame.pack(pady=20)
 
 
 def show_initial(event=None):
     hide_frames()
+
     header_frame.pack(fill='x')
     input_frame.pack(pady=20)
     output_frame.pack(pady=30)
 
 def multi_line_text_view(event=None):
     hide_frames()
+
     multi_line_text.pack(fill='both', expand=True)
+
 
 def hide_frames():
     header_frame.forget()
@@ -132,6 +138,7 @@ def clear_text(event=None):
 
 
 def show_suggestions_mlti(event=None):
+
     # Get the index of the cursor position
     index = entry_text.index(f"@{event.x},{event.y}")
 
@@ -153,6 +160,22 @@ def show_suggestions_mlti(event=None):
     for suggestion in suggestion_list:
         mlti_listbox.insert(END, suggestion)
 
+
+def show_shortcuts():
+    shortcuts = """
+    Keyboard Shortcuts:
+    -------------------
+    - Press '8' key: Activate multi-line text view
+    - Press '9' key: Add current input to dictionary
+    - Double-click on entry text: Show suggestions for multi-line text
+    - Press '0' key: Show initial state
+    - Press 'Enter' in entry text: Perform multi-line spell check
+    - Press 'Enter' in input text: Perform single-line spell check
+    - Press 'Delete' in entry text: Clear text
+
+    Note: Make sure respective widgets (entry_text, input_text, etc.) are correctly defined and bound.
+    """
+    messagebox.showinfo("Keyboard Shortcuts", shortcuts)
 
 #root
 root = Tk()
@@ -242,12 +265,9 @@ multi_line_text.grid_rowconfigure(2, weight=1)
 multi_line_text.grid_columnconfigure(0, weight=1)
 multi_line_text.grid_columnconfigure(1, weight=1)
 
-
-#linked keyboard to tkinter
-root.bind("<KeyPress-m>", multi_line_text_view)
-
-# Bind the "a" key to the handle_key_a function
-input_text.bind("<KeyPress-a>", add_to_dictionary)
+#shortcuts
+root.bind("<KeyPress-8>", multi_line_text_view)
+input_text.bind("<KeyPress-9>", add_to_dictionary)
 entry_text.bind("<Double-1>", show_suggestions_mlti)
 root.bind("<KeyPress-0>", show_initial)
 entry_text.bind("<Return>",multi_check_spelling)
@@ -284,8 +304,12 @@ synonyms_text = Text(definition_frame, font=("Helvetica", 16), width=60, height=
                      bg="#FFFFFF")
 synonyms_text.pack(pady=10)
 
-back_button = Button(definition_frame, text="Back to Suggestions", width=20, font=("Helvetica", 16), fg="#FFFFFF",
-                     bg="#FF4500", command=show_suggestions)
+back_button = Button(definition_frame, text="Back to Suggestions", width=20, font=("Helvetica", 16), fg="#FFD700",
+                     bg="#333333", command=show_suggestions)
 back_button.pack(pady=10)
+help_button=Button(input_frame , text="Help", width=8, font=("arial", 15, "bold"), bg="#333333", fg="#FFD700", command=show_shortcuts)
+help_button.grid(row=4,column=2)
+
+
 
 root.mainloop()
