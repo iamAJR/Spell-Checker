@@ -3,11 +3,9 @@ The Spell Checker Applicationis a comprehensive tool designed to help users chec
 ### Features
 
 - Spell checking for single and multiple lines of text
-- Suggestions for reqiured words
+- Suggestions for required words, Add to dictionary function
 - Definitions and synonyms for selected words
 - Text-to-speech functionality
-- word count
-- Add to dictionary function
 -  A user-friendly and visually appealing interface built with tkinter
 
 ## Reqiurements
