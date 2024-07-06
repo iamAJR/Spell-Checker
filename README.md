@@ -20,13 +20,12 @@ The Spell Checker Applicationis a comprehensive tool designed to help users chec
 - <p style="font-size:16px;">playsound(version 1.2.2 for python 3.10)</p>
 
 ## Interface
-![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/7ceed124-72f8-460c-a3c8-22f4794d7b9b)
+![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/d0abd0ca-a30d-4702-8fce-d02dfd0a3cdd)
 
+![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/f58c71ec-b9c3-4d2f-8926-f274e34dfd7d)
 
-![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/060fdd9b-f0d7-43b3-b336-510f5c58dab6)
+![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/f777a654-8509-4b04-b45c-d3ef54422347)
 
-
-![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/786ec2b6-eaf8-4315-a37d-5978ba5fdbe3)
 
 
 ## Installation
