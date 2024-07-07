@@ -1,5 +1,5 @@
 # Spell Checker
-The Spell Checker Applicationis a comprehensive tool designed to help users check the spelling of words and texts. It provides suggestions for words, fetches definitions and synonyms, and includes a text-to-speech feature for pronunciation. The application supports both single-word and multi-line text input. It is built using Python and features a user-friendly GUI created with tkinter.
+The Spell Checker Application is a comprehensive tool designed to help users check the spelling of words and texts. It provides suggestions for words, fetches definitions and synonyms, and includes a text-to-speech feature for pronunciation. The application supports both single-word and multi-line text input. It is built using Python and features a user-friendly GUI created with tkinter.
 ### Features
 
 - Spell checking for single and multiple lines of text
