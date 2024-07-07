@@ -16,6 +16,8 @@ The Spell Checker Application is a comprehensive tool designed to help users che
 - <p style="font-size:16px;">requests library</p>
 - <p style="font-size:16px;">gTTS library (Google Text-to-Speech)</p>
 - <p style="font-size:16px;">playsound(version 1.2.2 for python 3.10)</p>
+- <p style="font-size:16px;">get API keys from a standard dictionary(like Merriam-Webster)</p>
+
 
 ## Interface
 ![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/3da6b202-7da6-4576-b59f-1031fed52ab2)
