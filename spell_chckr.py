@@ -4,6 +4,7 @@ from tkinter import messagebox
 from text_speech import say
 import threading
 from editdistance import check
+from texteditor import run_text_edtior
 
 def load_dictionary(file_path):
     with open(file_path, 'r') as file:
@@ -22,7 +23,7 @@ def fetch_definition(word):
     if response.status_code == 200:
         data = response.json()
         if data and isinstance(data[0], dict):
-            return data[0].get('shortdef', ["No definition found"])
+            return data[0].get('shortcode', ["No definition found"])
     return ["No definition found"]
 
 
@@ -38,6 +39,7 @@ def fetch_synonyms(word):
                 synonyms.extend(meta)
             return synonyms
     return ["No synonyms found"]
+
 
 # using the difflib module comaparison based on tjhe ratio given
 '''def checker(word, dict_list):
@@ -81,7 +83,6 @@ def show_definition_and_synonyms(event):
         multi_line.config(state=DISABLED)
 
 
-
 def add_to_dictionary(event=None):
     word = input_text.get()
     if word and word not in dictionary:
@@ -106,6 +107,7 @@ def show_initial(event=None):
     input_frame.pack(pady=20)
     output_frame.pack(pady=30)
 
+
 def multi_line_text_view(event=None):
     hide_frames()
 
@@ -117,6 +119,7 @@ def hide_frames():
     input_frame.forget()
     output_frame.forget()
     multi_line_text.forget()
+
 
 def multi_check_spelling(event=None):
     # Placeholder for spell check logic
@@ -130,6 +133,7 @@ def multi_check_spelling(event=None):
 
     word_count.config(text=f"Word count: {len(words)}")
 
+
 def clear_text(event=None):
     entry_text.delete('1.0', END)
 
@@ -138,7 +142,6 @@ def clear_text(event=None):
 
 
 def show_suggestions_mlti(event=None):
-
     # Get the index of the cursor position
     index = entry_text.index(f"@{event.x},{event.y}")
 
@@ -177,7 +180,9 @@ def show_shortcuts():
     """
     messagebox.showinfo("Keyboard Shortcuts", shortcuts)
 
-#root
+def open_text_editor():
+    run_text_edtior()
+# root
 root = Tk()
 root.title("SPELL CHECKER")
 root.geometry("800x700")
@@ -187,23 +192,22 @@ root.iconphoto(False, PhotoImage(file='C:\\gui\\playstore.png'))
 dictionary_path = "words.txt"
 dictionary = load_dictionary(dictionary_path)
 
-
-#header
+# header
 header_frame = Frame(root, bg="#333333", bd=5)
 header_frame.pack(fill="x")
 
 heading = Label(header_frame, text="Spell Checker", font=("Helvetica", 30, "bold"), bg="#333333", fg="white")
 heading.pack()
 
-
-#input
+# input
 input_frame = Frame(root, bg="#1A1A1A")
 input_frame.pack(pady=20)
 
 input_label = Label(input_frame, text="Enter Word:", font=("Helvetica", 20), bg="#1A1A1A", fg="#FFFFFF")
 input_label.grid(row=0, column=0, padx=10)
 
-multi_line = Button(input_frame, text="Multi Line", font=("Helvetica", 20, "bold"), bg="orange", fg="#FFFFFF", command=multi_line_text_view)
+multi_line = Button(input_frame, text="Multi Line", font=("Helvetica", 20, "bold"), bg="orange", fg="#FFFFFF",
+                    command=multi_line_text_view)
 multi_line.grid(row=2, column=0)
 
 input_text = Entry(input_frame, justify="center", width=15, font=("poppins", 25), bg="#FFFFFF", fg="#000000", border=2)
@@ -217,14 +221,13 @@ button_check = Button(button_frame, text="Check", width=10, font=("arial", 20, "
                       command=check_spelling)
 button_check.pack(pady=5)
 
-#nextmultilinepg
+# nextmultilinepg
 # Multi-line text frame
 multi_line_text = Frame(root, bg="#1A1A1A")
 
-
-
 # Back button
-back_button = Button(multi_line_text, text='Back', font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700", command=show_initial)
+back_button = Button(multi_line_text, text='Back', font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700",
+                     command=show_initial)
 back_button.grid(row=0, column=0, padx=20, pady=20, sticky="nw")
 
 # Text entry section
@@ -237,26 +240,29 @@ entry_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 entry_text = Text(entry_frame, font=("Poppins", 20), width=60, height=10, bg="#FFFFFF", fg="#000000", border=2)
 entry_text.grid(row=1, column=0, padx=10, pady=10, columnspan=2, sticky="w")
 
-
 # Suggestions section
 suggestions_frame = Frame(multi_line_text, bg="#1A1A1A")
 suggestions_frame.grid(row=2, column=0, padx=10, pady=10, columnspan=2, sticky="nsew")
 
-suggestions_label = Label(suggestions_frame, text="Suggestions:", font=("Helvetica", 20, "bold"), bg="#1A1A1A", fg="#FFFFFF")
+suggestions_label = Label(suggestions_frame, text="Suggestions:", font=("Helvetica", 20, "bold"), bg="#1A1A1A",
+                          fg="#FFFFFF")
 suggestions_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
-
-mlti_listbox = Listbox(suggestions_frame, font=("Poppins", 20), width=30, height=10, bg="#FFFFFF", fg="#000000", border=2)
+mlti_listbox = Listbox(suggestions_frame, font=("Poppins", 20), width=30, height=10, bg="#FFFFFF", fg="#000000",
+                       border=2)
 mlti_listbox.grid(row=1, column=0, padx=25, pady=35)
 
-word_count = Label(multi_line_text, text="Word count: 0", font=("Helvetica", 18, "bold"), bg="#1A1A1A", fg="white",border=11)
+word_count = Label(multi_line_text, text="Word count: 0", font=("Helvetica", 18, "bold"), bg="#1A1A1A", fg="white",
+                   border=11)
 word_count.grid(row=2, column=1, padx=10, pady=10, sticky='ne')
 
 # Buttons
-check_button = Button(multi_line_text, text="count word", font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700", command=multi_check_spelling)
+check_button = Button(multi_line_text, text="count word", font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700",
+                      command=multi_check_spelling)
 check_button.grid(row=3, column=0, padx=5, pady=10)
 
-clear_button = Button(multi_line_text, text="Clear Text", font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700", command=clear_text)
+clear_button = Button(multi_line_text, text="Clear Text", font=("Helvetica", 15, "bold"), bg="#333333", fg="#FFD700",
+                      command=clear_text)
 clear_button.grid(row=3, column=1, padx=5, pady=10)
 
 # Configure row and column weights to ensure proper resizing
@@ -265,16 +271,16 @@ multi_line_text.grid_rowconfigure(2, weight=1)
 multi_line_text.grid_columnconfigure(0, weight=1)
 multi_line_text.grid_columnconfigure(1, weight=1)
 
-#shortcuts
+# shortcuts
 root.bind("<KeyPress-8>", multi_line_text_view)
 input_text.bind("<KeyPress-9>", add_to_dictionary)
 entry_text.bind("<Double-1>", show_suggestions_mlti)
 root.bind("<KeyPress-0>", show_initial)
-entry_text.bind("<Return>",multi_check_spelling)
-input_text.bind("<Return>",check_spelling)
+entry_text.bind("<Return>", multi_check_spelling)
+input_text.bind("<Return>", check_spelling)
 entry_text.bind("<Delete>", clear_text)
 
-#output
+# output
 output_frame = Frame(root, bg="#1A1A1A")
 output_frame.pack(pady=30)
 
@@ -286,7 +292,8 @@ listbox.grid(row=0, column=1, padx=10)
 
 listbox.bind("<<ListboxSelect>>", show_definition_and_synonyms)
 
-button_add = Button(button_frame, text="Add to Dictionary", width=15, font=("arial", 15, "bold"), bg="#333333", fg="#FFD700", command=add_to_dictionary)
+button_add = Button(button_frame, text="Add to Dictionary", width=15, font=("arial", 15, "bold"), bg="#333333",
+                    fg="#FFD700", command=add_to_dictionary)
 button_add.pack(pady=5)
 
 definition_frame = Frame(root, bg="#1A1A1A")
@@ -307,9 +314,14 @@ synonyms_text.pack(pady=10)
 back_button = Button(definition_frame, text="Back to Suggestions", width=20, font=("Helvetica", 16), fg="#FFD700",
                      bg="#333333", command=show_suggestions)
 back_button.pack(pady=10)
-help_button=Button(input_frame , text="Help", width=8, font=("arial", 15, "bold"), bg="#333333", fg="#FFD700", command=show_shortcuts)
-help_button.grid(row=4,column=2)
+help_button = Button(input_frame, text="Help", width=8, font=("arial", 15, "bold"), bg="#333333", fg="#FFD700",
+                     command=show_shortcuts)
+help_button.grid(row=2, column=2)
 
+# Button to open text editor
+open_editor_button = Button(input_frame, text="Text Editor", width=9, font=("arial", 12, "bold"), bg="#333333", fg="#FFD700",command=open_text_editor)
+open_editor_button.grid(row=2, column=1)
 
+# open_editor_button.pack(pady=10)
 
 root.mainloop()
