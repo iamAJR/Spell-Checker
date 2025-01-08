@@ -31,6 +31,8 @@ The application now integrates a **Text Editor** with advanced formatting option
 
 ![image](https://github.com/iamAJR/Spell_Checker/assets/115625957/f777a654-8509-4b04-b45c-d3ef54422347)
 
+![image](https://github.com/user-attachments/assets/0c7c2251-05c8-4496-a099-8aabb1bd093b)
+
 
 
 ## Installation
